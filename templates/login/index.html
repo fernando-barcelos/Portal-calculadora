@@ -1,0 +1,48 @@
+{% extends "fragments/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <section class="login-section" style="width: 300px; margin: 0 auto;">
+        <h1>Login</h1>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+            <div class="fields">
+                <label for="{{ field.id_for_label}}"> {{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Entrar</button>
+            <div class="form-check-inline"">
+                <label for="remember_me" class="form-check-label">
+                <input type="checkbox" id="remember_me" name="remember_me" class="form-check-input" >Lembrar-me
+                </label>
+                
+            </div>
+            
+        </form>
+        <p>Não tem uma conta? <a href="{% url 'cadastro' %}">Registrar</a></p>
+        {% if messages == 'success' %}
+            <div class="alert-gren" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                
+            </div>
+        {% elif messages %}
+            <div class="alert-red" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+        {% endif %}
+    </section>
+{% endblock %}

@@ -1,0 +1,52 @@
+body, .container-body{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    
+    background: linear-gradient(155deg,rgba(18, 23, 46, 1) 0%, rgba(85, 28, 131, .85) 50%, rgba(18, 23, 46, 1) 100%);
+}
+
+.header-container {
+    justify-content: center;
+    text-align: center;
+}
+
+.header-container, h1 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: #fefefe;
+    font-size: 40px;
+}
+
+.header-container, p {
+    font-size: 15px;
+    color: #d2bcea;
+}
+.form-control, label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fefefe;
+}
+.form-control, input {
+    color: black;
+    width: 300px;
+}
+
+.form-control, button {
+    margin-top: 5px;
+    background-color: ;
+}
+
+form, .alert-red {
+    color: red;
+}
+form, .alert-green {
+    color: green;
+}
+

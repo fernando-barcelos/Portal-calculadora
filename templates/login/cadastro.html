@@ -1,0 +1,41 @@
+{% extends "fragments/base.html" %}
+
+{% load static %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+    <section class="login-section">
+        <h1>Cadastro</h1>
+        <form method="POST" action="{% url 'cadastro' %}">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+            <div class="fields">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Registrar</button>
+        </form>
+        <p>Já tem uma conta? <a href="{% url 'login' %}">Entrar</a></p>
+
+       {% if messages == 'success' %}
+            <div class="alert-green" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+                
+            </div>
+        {% elif messages %}
+            <div class="alert-red" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+        {% endif %}
+{% endblock %}

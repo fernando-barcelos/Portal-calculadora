@@ -1,0 +1,21 @@
+# Usa uma imagem Python enxuta
+FROM python:3.11-slim
+
+# Define diretório de trabalho
+WORKDIR /app
+
+# Copia e instala as dependências
+COPY setup/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia o restante do projeto (exceto venv e outros arquivos ignorados)
+COPY . .
+
+# Coleta arquivos estáticos
+RUN python setup/manage.py collectstatic --noinput
+
+# Expõe a porta
+EXPOSE 8000
+
+# Comando para iniciar com gunicorn
+CMD ["gunicorn", "setup.wsgi:application", "--bind", "0.0.0.0:8000"]
